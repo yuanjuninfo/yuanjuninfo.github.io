@@ -58,13 +58,26 @@ alias l='ls -hF --color=auto'
 eof
 fi
 
-echo -e "[\e[1;32m update of this system now \e[0m] y/n"
+echo -e "[\e[1;32m Install repo epel \e[0m] y/n"
+read -n 1 -t 5 repoinfo
+if [[ ${repoinfo} = "y" || -z ${repoinfo} ]];then
+wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+rpm -Uvh epel-release-6*.rpm
+fi
+
+echo -e "[\e[1;32m Install pandoc \e[0m] y/n"
+read -n 1 -t 5 pandocinfo
+if [[ ${pandocinfo} = "y" || -z ${pandocinfo} ]];then
+yum install pandoc -y
+fi
+
+echo -e "[\e[1;32m Update of this system now \e[0m] y/n"
 read -n 1 -t 5 updateinfo
 if [[ ${updateinfo} = "y" || -z ${updateinfo} ]];then
 yum update -y
 fi
 
-echo -e "\e[1;31m reboot of this system now \e[0m y/n"
+echo -e "\e[1;31m Reboot of this system now \e[0m y/n"
 read -n 1 -t 10 rebootinfo
 if [[ ${rebootinfo} = "y" ]];then
 reboot
