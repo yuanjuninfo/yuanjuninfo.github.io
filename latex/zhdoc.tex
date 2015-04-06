@@ -1,0 +1,369 @@
+\documentclass{zhart}
+\bibliographystyle{plain}
+\title{\textbf{zh 文档类说明}}
+\author{\textit{袁俊}\thanks{\url{http://cniln.github.io/}}}
+\date{\small{\texttt{版本号：v0.2 \qquad 修改日期：2014/08/10}}}
+% 需提供 zhart.cls 并手动去掉所有宏包行首注释符
+\begin{document}
+\maketitle
+\begin{abstract}
+zh 文档类基于 ctex 文档类修改而成, 主要解决 ctex 文档类在 Linux 系统中的中文字体设置以及提供在 Windows 系统中免费中文字体的替代方案.
+
+zh 文档类由袁俊个人编写并负责维护.
+\end{abstract}
+\newpage
+\tableofcontents
+\section{简介}
+
+zh 文档类分为 zhart.cls zhbook.cls zhrep.cls 三个文档类文件 分别对应 article book report 三个基本文档类. 
+
+zh 文档类的编写目的是便于个人使用 \XeLaTeX 编译编码为utf\/8的 tex 文本从而生成中文 pdf 文档. 关于 Linux 下中文字体的设置是参考刘海洋编写的 <\LaTeX 入门> (p70). 用户可手动修改这部分代码, 针对自己的实际需求选择合适的文本字体. 由于引入了部分常用宏包, 以便调用相关命令排版出适合的中文文档, 用户可省略导言区的大量宏包导入命令. 实际导入宏包的方法是: 打开 zh 某一类的 cls 文件, 将你需要的宏包前的\%注释符去掉即可. 
+
+\subsection{\TeX Live 的基本安装}
+关于\TeX Live 的基本安装可参考\cite{TeXLive2014}. \footnote{笔者的测试环境为 CentOS Linux 7 (Core) . } \\
+打开终端模拟器, 参考如下代码: 
+
+\begin{verbatim}
+su -
+cd /path/to 镜像文件所在目录/
+mount -t iso9660 -o loop texlive2014-20140525.iso /mnt/
+cd /mnt
+./install-tl
+I
+cd /
+umount /mnt/
+\end{verbatim}
+
+\subsection{环境变量设置与字体配置}
+关于环境设置与字体配置可参考\cite{TeXLive2014}. 
+\begin{verbatim}
+su -
+%环境变量设置
+gedit /etc/profile
+# TeX Live 2014
+PATH=/usr/local/texlive/2014/bin/x86_64-linux:$PATH; export PATH
+MANPATH=/usr/local/texlive/2014/texmf-dist/doc/man:$MANPATH; export MANPATH
+INFOPATH=/usr/local/texlive/2014/texmf-dist/doc/info:$INFOPATH; export INFOPATH
+
+
+
+%字体配置
+cd /usr/local/texlive/2014/texmf-var/fonts/conf
+cp texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive.conf
+fc-cache -fsv
+fc-list : family style file spacing
+\end{verbatim}
+
+\subsection{zh 文档类安装}
+
+\begin{verbatim}
+su -
+cd /usr/local/texlive/texmf-local/tex/latex/
+mkdir zh
+cd zh
+cp path/to/zh/zh*.cls .
+texhash
+\end{verbatim}
+
+笔者不推荐用户将文档类进行安装, 这样不利于后期用户自行修改 .cls文件, 如字体的设置和新的宏包的引入. 建议将所需的文档类放入待编译的文档目录下, 即可进行编译. 
+
+
+\subsection{中文字体设置源码}
+
+关于中文字体设置可参考\cite{LaTeX2013}. 
+\begin{figure}[H]
+\centering
+\caption*{\textit{zh 文档类中文字体设置源码}}
+\begin{tabular}{l}
+\hline
+\verb|\setCJKmainfont[BoldFont=FandolHei,|\\
+\verb|ItalicFont=FandolKai,BoldItalicFont=FandolFang]{FandolSong}|\\
+\verb|\setCJKsansfont{FandolHei}|\\
+\verb|\setCJKmonofont{FandolFang}|\\
+\verb|\setCJKfamilyfont{zhsong}{FandolSong}|\\
+\verb|\setCJKfamilyfont{zhhei}{FandolHei}|\\
+\verb|\setCJKfamilyfont{zhfs}{FandolFang}|\\
+\verb|\setCJKfamilyfont{zhkai}{FandolKai}|\\
+\verb|\providecommand\songti[1]{\CJKfamily{zhsong}#1}|\\
+\verb|\providecommand\heiti[1]{\CJKfamily{zhhei}#1}|\\
+\verb|\providecommand\fangsong[1]{\CJKfamily{zhfs}#1}|\\
+\verb|\providecommand\kaishu[1]{\CJKfamily{zhkai}#1}|\\
+\hline
+\end{tabular}
+\end{figure}
+
+\subsection{引用宏包列表}
+\begin{figure}[H]
+\centering
+\caption*{\textit{zh 文档类 引用宏包列表}}
+\begin{tabular}{rl}
+\hline
+功能&宏包名\\
+\hline
+浮动控制&float\\
+特殊字符&pifont,marvosym,manfnt \ldots\\
+脆弱命令保护&cprotect\\
+标题控制&caption\\
+\TeX 相关标志&mflogo,amsmath,metalogo,doc,hologo\\
+强调文字&ulem\\
+行距调整&setspace\\
+表格控制&booktabs,multirow\\
+\hline
+\end{tabular}
+\end{figure}
+\newpage
+
+\section{使用帮助}
+
+\subsection{字符}
+
+关于字符的详细介绍可参考\cite{TheComprehensive2009}. 
+\begin{figure}[H]
+\centering
+\caption*{\textit{zh 文档类 字符宏包列表}}
+\begin{tabular}{rcl}
+\hline
+宏包&命令&显示\\
+\hline
+pifont&\verb|\ding{51}|&\ding{51}\\
+pifont&\verb|\ding{55}|&\ding{55}\\
+pifont&\verb|\ding{172}|&\ding{172}\\
+pifont&\verb|\ding{45}|&\ding{45}\\
+marvosym&\verb|\Female|&\Female\\
+marvosym&\verb|\Male|&\Male\\
+marvosym&\verb|\Football|&\Football\\
+marvosym&\verb|\Coffeecup|&\Coffeecup\\
+marvosym&\verb|\Yinyang|&\Yinyang\\
+marvosym&\verb|\Faxmachine|&\Faxmachine\\
+manfnt&\verb|$\otimes$|&$\otimes$\\
+manfnt&\verb|\textdbend|&\textdbend\\
+keystroke&\verb|\Enter|&\Enter\\
+textcomp&\verb|\textcelsius|&\textcelsius\\
+textcomp&\verb|\textleaf|&\textleaf\\
+harmony&\verb|\AAcht|&\AAcht\\
+ifsym&\verb|\Letter|&\Letter\\
+ifsym&\verb|\textifsym{-123.456}|&\textifsym{-123.456}\\
+recycle&\verb|\recycle|&\recycle\\
+cclicenses&\verb|\cc|&\cc\\
+phaistos&\verb|\PHtunny|&\PHtunny\\
+skull&\verb|$\skull$|&$\skull$\\
+skak&\verb|\WhiteKnightOnBlack|&\WhiteKnightOnBlack\\
+trfsigns&\verb|\ztransf|&\ztransf\\
+\hline
+\end{tabular}
+\end{figure}
+
+\subsection{字体}
+
+\subsubsection{中文字体安装}
+
+zh 文档类的默认中文字体是无需用户自己安装的, 为 texlive 2014 镜像文件中自带的中文免费开源字体. 用户可以利用搜索引擎自行搜索自己喜欢的中文字体的下载地址用以安装并修改\/.cls 文件字体设置的相关代码. 至于字体安装方法,在 Linux 和 Windows 中均可通过双击字体安装文件进行相应安装. 
+
+\begin{figure}[H]
+\centering
+\caption*{\textit{zh 文档类所使用的四种字体族}}
+\begin{tabular}{rccl}
+\hline
+中文名&英文名&命令\\
+\hline
+{\songti 宋体}&FandolSong&\verb|\songti|\\
+{\heiti 黑体}&FandolHei&\verb|\heiti|\\
+{\fangsong 仿宋}&FandolFang&\verb|\fangsong|\\
+{\kaishu 楷书}&FandolKai&\verb|\kaishu|\\
+\hline
+\end{tabular}
+\end{figure}
+
+\subsubsection{中文行距调整}
+
+\begin{figure}[H]
+\begin{tabular}{cccc}
+\hline
+命令&基本行距&默认因子&实际行距\\
+\hline
+\verb|\setstretch{<factor>}\selectfont|&\textifsym{1.2}&\textifsym{1.3}&\textifsym{1.56}\\
+\hline
+\end{tabular}
+\end{figure}
+
+\subsubsection{中文字号调整}
+
+\begin{figure}[H]
+\centering
+\caption*{字号对比显示列表}
+\begin{tabular}{rlrl}
+\hline
+命令&显示&命令&显示\\
+\hline
+\verb|\zihao{0}|&\zihao{0}{初号}&\verb||&\\
+\verb|\zihao{-0}|&\zihao{-0}{小初号}&\verb||&\\
+\verb|\zihao{1}|&\zihao{1}{一号}&\verb|\Huge{Huge}|&\Huge{Huge}\\
+\verb|\zihao{-1}|&\zihao{-1}{小一号}&\verb||&\\
+\verb|\zihao{2}|&\zihao{2}{二号}&\verb|\huge{huge}|&\huge{huge}\\
+\verb|\zihao{-2}|&\zihao{-2}{小二号}&\verb|\LARGE{LARGE}|&\LARGE{LARGE}\\
+\verb|\zihao{3}|&\zihao{3}{三号}&\verb||&\\
+\verb|\zihao{-3}|&\zihao{-3}{小三号}&\verb|\Large{Large}|&\Large{Large}\\
+\verb|\zihao{4}|&\zihao{4}{四号}&\verb||&\\
+\verb|\zihao{-4}|&\zihao{-4}{小四号}&\verb|\large{large}|&\large{large}\\
+\verb|\zihao{5}|&\zihao{5}{五号}&\verb|\normalsize{normalsize}|&\normalsize{normalsize}\\
+\verb|\zihao{-5}|&\zihao{-5}{小五号}&\verb|\small{small}|&\small{small}\\
+\verb|\zihao{6}|&\zihao{6}{六号}&\verb|\footnotesize{footnotesize}|&\footnotesize{footnotesize}\\
+\verb|\zihao{-6}|&\zihao{-6}{小六号}&\verb|\scriptsize{scriptsize}|&\scriptsize{scriptsize}\\
+\verb|\zihao{7}|&\zihao{7}{七号}&\verb|\tiny{tiny}|&\tiny{tiny}\\
+\verb|\zihao{8}|&\zihao{8}{八号}&\verb||&\\
+\hline
+\end{tabular}
+\end{figure}
+
+\subsubsection{西文字体采集}
+西文字体采集列举以下三种常用命令\cite{LaTeX2e2005},用户根据实际需求选择相应命令.下面分别举例说明.
+
+\begin{figure}[H]
+\begin{tabular}{l}
+{\fontencoding{T1}\fontfamily{phv}\fontseries{m}\fontshape{n}\fontsize{14.4pt}{1}\selectfont \fbox{Adobe Helvetica}}\\
+\verb|\fontencoding{T1}|\\
+\verb|\fbox{Adobe Helvetica}}|\\
+\verb|\fontfamily{phv}|\\
+\verb|\fontseries{m}|\\
+\verb|\fontshape{n}|\\
+\verb|\fontsize{14.4pt}{1}\selectfont|\\
+\\
+{\usefont{OT1}{pzc}{m}{n}\fbox{\Large{PostScript New Century Schoolbook}}}\\
+\verb|\usefont{OT1}{pzc}{m}{n}|\\
+\\
+{\DeclareFixedFont{\zh}{OT1}{pbk}{m}{n}{14.4pt} \fbox{\zh{PostScript Bookman}}}\\
+\verb|\DeclareFixedFont{\zh}{OT1}{pbk}{m}{n}{14.4pt}|\\
+\end{tabular}
+\end{figure}
+
+关于三种命令参数的详解可参考下面列出的文档,本文仅摘要部分原文内容,以便于用户理解相关命令的基本含义.
+\begin{verbatim}
+\fontencoding{<encoding>}
+\fontfamily{<family>}
+\fontseries{<series>}
+\fontshape{<shape>}
+\fontsize{<size>}{<baselineskip>}
+\selectfont
+或者
+\usefont{<encoding>}{<family>}{<series>}{<shape>}
+或者
+\DeclareFixedFont{<cmd>}{<encoding>}{<family>}%
+{<series>}{shape}{<size>}
+\end{verbatim}
+\begin{figure}[H]
+\centering
+\caption*{\textit{字体五种属性列表}}
+\begin{tabular}{rl}
+\hline
+encoding&values\\
+OT1&\TeX\,text\\
+T1&\TeX\,extended text\\
+OML&\TeX\,math italic\\
+OMS&\TeX\,math symbols\\
+OMX&\TeX\,math large symbols\\
+\hline
+families&values\\
+\hline
+cmr&ComputerModern Roman\\
+cmss&Computer Modern Sans\\
+cmtt&Computer Modern Typewriter\\
+cmm&Computer Modern Math Italic\\
+cmsy&Computer Modern Math Symbols\\
+cmex&Computer Modern Math Extensions\\
+ptm&Adobe Times\\
+phv&Adobe Helvetica\\
+pcr&Adobe Courier\\
+pzc&PostScript New Century Schoolbook\\
+pbk&PostScript Bookman\\
+\hline
+series&values\\
+\hline
+m&Medium\\
+b&Bold\\
+bx&Bold extended\\
+sb&Semi-Bold\\
+c&Condensed\\
+\hline
+shape&values\\
+\hline
+n&Normal(that is 'upright' or 'roman')\\
+it&Italic\\
+sl&Slanted(or 'oblique')\\
+sc&Caps and small caps\\
+\hline
+size&values\\
+\hline
+5pt&\tiny{tiny}\\
+7pt&\scriptsize{scriptsize}\\
+8pt&\footnotesize{footnotesize}\\
+9pt&\small{small}\\
+10pt&\normalsize{normalsize}\\
+12pt&\large{large}\\
+14.4pt&\Large{Large}\\
+17.28pt&\LARGE{LARGE}\\
+20.74pt&\huge{huge}\\
+24.88pt&\Huge{Huge}\\
+\hline
+\end{tabular}
+\end{figure}
+
+\newpage
+
+\subsection{浮动控制}
+
+\begin{verbatim}
+\begin{figure}[H]
+表格环境或图形环境
+\end{figure}
+\end{verbatim}
+
+\subsection{抄录环境}
+
+\noindent 
+\texttt{抄录命令 : \textbackslash{}verb 'encoding'\\
+抄录环境 : \\
+\textbackslash begin\{verbatim\} \\
+enconding \ldots\\
+\textbackslash end\{verbatim\}
+}
+
+\subsection{强调文字}
+
+关于中文文字强调可参考\cite{ctex2011}.
+
+\begin{figure}[H]
+\begin{tabular}{rl}
+命令&效果\\
+\verb|\uline{emphasized}|&\uline{emphasized}\\
+\verb|\uuline{urgent}|&\uuline{urgent}\\
+\verb|\uwave{boat}|&\uwave{boat}\\
+\verb|\sout{wrong}|&\sout{wrong}\\
+\verb|\xout{removed}|&\xout{removed}\\
+\verb|\dashuline{dashing}|&\dashuline{dashing}\\
+\verb|\dotuline{dotty}|&\dotuline{dotty}\\
+\verb|\CTEXunderdot{着重号}|&\CTEXunderdot{着重号}\\
+\verb|\CTEXunderline{下划线}|&\CTEXunderline{下划线}\\
+\verb|\CTEXunderdblline{双下划线}|&\CTEXunderdblline{双下划线}\\
+\verb|\CTEXunderwave{波浪线}|&\CTEXunderwave{波浪线}\\
+\verb|\CTEXsout{删除线}|&\CTEXsout{删除线}\\
+\verb|\CTEXxout{删除线}|&\CTEXxout{删除线}\\
+\verb|\emph{强调}|&\emph{强调}\\
+\end{tabular}
+\end{figure}
+
+\newpage
+\section{版本更新}
+\begin{description}
+\item[v0.0 2014/02/15] 袁俊: 基于 article 编写的宏包 cniln
+\item[v0.1 2014/07/06] 袁俊: 基于 ctexart 编写的文档类 zh
+\item[v0.1 2014/07/18] 袁俊: 将抄录命令简写代码注释, 以避免表格中使用 | 时报错; 添加了有关表格控制的宏包; 将 zh 文档类扩展为 zhart zhrep zhbook 对应 ctexart ctexrep ctexbook; 统一将标题首段设为无缩进段落. 
+\item[v0.2 2014/08/10] 袁俊: 将中文字体设置的代码更新, 添加仿宋字体族. 至此, 用户无需手动安装中文字体, 即可在 Windows 和 类 Unix 平台上使用免费开源的中文字体. (注: 使用了 texlive 2014 镜像文件中自带的中文字体进行的设置. ) 
+\end{description}
+\section{开发人员}
+
+\begin{itemize}
+\item 袁俊（cnilnhf@gmail.com）
+\end{itemize}
+
+\bibliography{zhdoc}
+\end{document}
