@@ -3,5 +3,5 @@ layout: default
 title: YUAN, Jun
 ---
 
--  [Article](/article.html)
--  [Download](/download.html)
+-  [文章](/article.html)
+-  [下载](/download.html)
