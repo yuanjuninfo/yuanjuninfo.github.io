@@ -1,6 +1,6 @@
 ---
 layout: default
-title: yuanjun.info
+title: YUAN, Jun
 ---
 
 -  [Blog](/contents/blog.html)
