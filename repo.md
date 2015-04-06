@@ -1,17 +1,17 @@
 ---
 layout: default
-title: Repo
+title: Download
 ---
 
 #### Bash Script
 
-- [texlive20140525.el6.x86_64.sh](/bash/texlive20140525.el6.x86_64.sh)
-- [base.el6.x86_64.sh](/bash/base.el6.x86_64.sh)
+- [texlive20140525.el6.x86_64.sh](/download/texlive20140525.el6.x86_64.sh)
+- [base.el6.x86_64.sh](/download/base.el6.x86_64.sh)
 
 #### LaTeX Template
 
-- [zhtest.cls](/latex/zhtest.cls)
-- [zhart.cls](/latex/zhart.cls)
-- [zhbook.cls](/latex/zhbook.cls)
-- [zhrep.cls](/latex/zhrep.cls)
-- [zhbea.cls](/latex/zhbea.cls)
+- [zhtest.cls](/download/zhtest.cls)
+- [zhart.cls](/download/zhart.cls)
+- [zhbook.cls](/download/zhbook.cls)
+- [zhrep.cls](/download/zhrep.cls)
+- [zhbea.cls](/download/zhbea.cls)
