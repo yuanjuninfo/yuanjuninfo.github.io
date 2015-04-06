@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Blog
+title: Article
 ---
 
 {% for post in site.posts %}
