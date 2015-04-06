@@ -3,5 +3,5 @@ layout: default
 title: YUAN, Jun
 ---
 
--  [Blog](/article.html)
--  [Repo](/download.html)
+-  [Article](/article.html)
+-  [Download](/download.html)
