@@ -39,9 +39,9 @@ umount /mnt/
 cat >> /etc/profile <<eof
 
 # TeX Live 2014
-export PATH=$PATH:/usr/local/texlive/2014/bin/x86_64-linux
-export MANPATH=$MANPATH:/usr/local/texlive/2014/texmf-dist/doc/man
-export INFOPATH=$INFOPATH:/usr/local/texlive/2014/texmf-dist/doc/info
+export PATH=\$PATH:/usr/local/texlive/2014/bin/x86_64-linux
+export MANPATH=\$MANPATH:/usr/local/texlive/2014/texmf-dist/doc/man
+export INFOPATH=\$INFOPATH:/usr/local/texlive/2014/texmf-dist/doc/info
 eof
 
 cd /usr/local/texlive/2014/texmf-var/fonts/conf
