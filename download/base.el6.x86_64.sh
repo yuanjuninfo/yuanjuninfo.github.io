@@ -71,6 +71,18 @@ if [[ ${pandocinfo} = "y" || -z ${pandocinfo} ]];then
 yum install pandoc -y
 fi
 
+echo -e "[\e[1;32m Install clang \e[0m] y/n"
+read -n 1 -t 5 clanginfo
+if [[ ${clanginfo} = "y" || -z ${clanginfo} ]];then
+yum install clang -y
+fi
+
+echo -e "[\e[1;32m Install cli \e[0m] y/n"
+read -n 1 -t 5 cliinfo
+if [[ ${cliinfo} = "y" || -z ${cliinfo} ]];then
+yum install 2048-cli -y
+fi
+
 echo -e "[\e[1;32m Update of this system now \e[0m] y/n"
 read -n 1 -t 5 updateinfo
 if [[ ${updateinfo} = "y" || -z ${updateinfo} ]];then
