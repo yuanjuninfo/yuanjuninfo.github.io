@@ -1,6 +1,9 @@
 ---
 layout: default
-title: YUAN, Jun
+title: Article
 ---
 
+{% for post in site.posts %}
+- [{{ post.title }}]({{ post.url }})
+{% endfor %}
 
