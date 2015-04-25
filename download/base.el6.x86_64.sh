@@ -54,7 +54,7 @@ cat >> /etc/bashrc <<eof
 # Alias set up
 alias ll='ls -lhF --color=auto'
 alias la='ls -alhF --color=auto'
-alias l='ls -hF --color=auto'
+alias l='ls -1 --color=auto'
 eof
 fi
 
