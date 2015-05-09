@@ -1,6 +1,6 @@
 #!/bin/bash
 # YUAN, Jun
-# 2015-3-26
+# 2015-05-09
 # base.el6.x86_64.sh
 
 if [[ ${UID} = "0" ]];then
@@ -13,7 +13,7 @@ fi
 echo -e "[\e[1;32m Install Misc \e[0m] y/n"
 read -n 1 -t 5 miscinfo
 if [[ ${miscinfo} = "y" || -z ${miscinfo} ]];then
-yum install -y gedit gedit-plugins evince nautilus-open-terminal ImageMagick byzanz zsh
+yum install -y gedit gedit-plugins evince nautilus-open-terminal ImageMagick
 fi
 
 echo -e "[\e[1;32m Install Development tools \e[0m] y/n"
@@ -56,31 +56,6 @@ alias ll='ls -lhF --color=auto'
 alias la='ls -alhF --color=auto'
 alias l='ls -1 --color=auto'
 eof
-fi
-
-echo -e "[\e[1;32m Install repo epel \e[0m] y/n"
-read -n 1 -t 5 repoinfo
-if [[ ${repoinfo} = "y" || -z ${repoinfo} ]];then
-wget http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-rpm -Uvh epel-release-6*.rpm
-fi
-
-echo -e "[\e[1;32m Install pandoc \e[0m] y/n"
-read -n 1 -t 5 pandocinfo
-if [[ ${pandocinfo} = "y" || -z ${pandocinfo} ]];then
-yum install pandoc -y
-fi
-
-echo -e "[\e[1;32m Install clang \e[0m] y/n"
-read -n 1 -t 5 clanginfo
-if [[ ${clanginfo} = "y" || -z ${clanginfo} ]];then
-yum install clang -y
-fi
-
-echo -e "[\e[1;32m Install cli \e[0m] y/n"
-read -n 1 -t 5 cliinfo
-if [[ ${cliinfo} = "y" || -z ${cliinfo} ]];then
-yum install 2048-cli -y
 fi
 
 echo -e "[\e[1;32m Update of this system now \e[0m] y/n"
