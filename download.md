@@ -5,8 +5,9 @@ title: Download
 
 #### Bash 脚本
 
-- [texlive2014 安装脚本](/download/texlive20140525.el6.x86_64.sh)
-- [CentOS6.6 初始化脚本](/download/base.el6.x86_64.sh)
+- [texlive2014 软件安装脚本](/download/texlive20140525.el6.x86_64.sh)
+- [CentOS6.6 软件安装脚本](/download/install_base.el6.x86_64.sh)
+- [CentOS6.6 终端配置脚本](/download/conf_base.el6.x86_64.sh)
 
 #### LaTeX 模板
 
