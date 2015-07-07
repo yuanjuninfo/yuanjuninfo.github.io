@@ -23,6 +23,7 @@ set autoindent
 set smartindent
 set tabstop=2
 set shiftwidth=2
+set expandtab
 set showmatch
 set guioptions-=T
 set ruler
@@ -43,5 +44,6 @@ cat >> /etc/bashrc <<eof
 alias ll='ls -lhF --color=auto'
 alias la='ls -alhF --color=auto'
 alias l='ls -1 --color=auto'
+alias gcc='gcc -std=c99'
 eof
 fi
